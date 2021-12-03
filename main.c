@@ -74,7 +74,7 @@ int main(){
 
   print_matrix(A);
   printf("\n\n");
-  print_matrix(B);
+  print_matrix(B_org);
   printf("\n\n");
   mm(A, B, C);
 
