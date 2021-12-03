@@ -55,14 +55,20 @@ int main(){
   );
 
   int *A = create_matrix();
+  int *B_org = create_matrix();
   int *B = create_matrix();
   int *C = create_matrix();
   /*randomly initialize A and B*/
   initialize_matrix(A, 0, 1);
-  initialize_matrix(B, 0, 2);
+  initialize_matrix(B_org, 0, 2);
 
   A[12]=0;
   A[15]=3;
+
+  for(int i=0; i<N; i++)
+    for(int j=0; j<N; j++)
+      B[i*N+j] = B_org[j*N+i];
+
 
   print_matrix(A);
   printf("\n\n");
