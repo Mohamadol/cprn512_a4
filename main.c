@@ -42,6 +42,8 @@ int main(){
       256,    /*max_masked_waves*/
       6,      /*fxp_word_frac_bits*/
       4,      /*fxp_byte_frac_bits*/
+      0,
+      0
   );
 
   float *A = create_matrix();
