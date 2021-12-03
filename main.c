@@ -12,27 +12,30 @@ void mm(int *A, int *B, int *C)
     int num_rows = N;
     /*create vector scratchpads with the size of matrix for both*/
     /*operands and the result*/
-	  vbx_word_t *a = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
-	  vbx_word_t *b = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
-	  vbx_word_t *c = vbx_sp_malloc(num_rows * sizeof(vbx_word_t));
+	  vbx_word_t *a = vbx_sp_malloc(N * sizeof(vbx_word_t));
+	  vbx_word_t *b = vbx_sp_malloc(N * sizeof(vbx_word_t));
+	  vbx_word_t *c = vbx_sp_malloc(sizeof(vbx_word_t));
     /*transfering data from matrix arrays to vector scratchpads*/
     /*scratchpad ptr, host ptr, numBytes*/
 
-    vbx_dma_to_vector(a, A, mat_size * sizeof(vbx_word_t));
-    vbx_dma_to_vector(b, B, mat_size * sizeof(vbx_word_t));
-    vbx_sync();
+
 
     /*setting vector length register*/
     //for(int i=0 ; i < num_rows; i++){
       /*num lanes=N, num_rows=N*/
+      for(int i=0; i< 2; i++){
+      vbx_dma_to_vector(a, A[i*N], mat_size * sizeof(vbx_word_t));
+      vbx_dma_to_vector(b, B[i*N], mat_size * sizeof(vbx_word_t));
+      vbx_sync();
       vbx_set_vl(row_size);
       /*stride -> num_rows, incDest, incSrcA*/
       //vbx_set_2D(1, 0, N);
       /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
       vbx_acc(VVWWWUUU, VMUL, c, a, b);
       vbx_sync();
-      vbx_dma_to_host(C, c, sizeof(vbx_word_t));
+      vbx_dma_to_host(C[i], c, sizeof(vbx_word_t));
       vbx_sync();
+      }
     //}
     //vbxsim_print_stats();
     //vbx_sp_free();
