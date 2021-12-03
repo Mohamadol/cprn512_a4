@@ -73,7 +73,7 @@ int main(){
   end = clock();
 
   datalayout_time = end - begin;
-  print("%.5f", datalayout_time);
+  printf("%.5f", datalayout_time);
 
 
   mm(A, B, C);
