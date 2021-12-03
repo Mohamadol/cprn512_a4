@@ -41,7 +41,8 @@ int main(){
       64,     /*scratchpad capacity*/
       256,    /*max_masked_waves*/
       6,      /*fxp_word_frac_bits*/
-      4,      /*fxp_byte_frac_bits*/
+      5,      /*fxp_byte_frac_bits*/
+      4,
       0,
       0
   );
