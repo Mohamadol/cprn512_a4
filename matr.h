@@ -25,7 +25,7 @@ int *create_matrix(){
 
 void initialize_matrix(int *data, int random_init, int init_val){
   float max_random_init = 1000.0;
-  int max_random_init_int = 1000;
+  int max_random_init_int = 500;
 
   for(int i=0 ; i<N ; i++){
     for(int j=0 ; j<N ; j++){

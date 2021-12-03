@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "vbx.h"
 #include "matr.h"
 
@@ -64,21 +65,29 @@ int main(){
 
 
   //change the rows and columns of matrix for ease of access
+  clock_t begin = clock();
+  return end-begin;
+
   for(int i=0; i<N; i++)
     for(int j=0; j<N; j++)
       B[i*N+j] = B_org[j*N+i];
+  clock_t end = clock();
+
+  float datalayout_time = end - begin;
+  print("%.5f", datalayout_time);
+
 
   mm(A, B, C);
 
   /*
-  */
+  //comment out below for result check with
+  smaller matrcies
   print_matrix(A);
   printf("\n\n");
   print_matrix(B_org);
   printf("\n\n");
   print_matrix(C);
   printf("\n\n");
-  /*
   */
 
   return 0;
