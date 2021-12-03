@@ -59,29 +59,27 @@ int main(){
   int *B = create_matrix();
   int *C = create_matrix();
   /*randomly initialize A and B*/
-  initialize_matrix(A, 0, 1);
-  initialize_matrix(B_org, 0, 2);
+  initialize_matrix(A, 1, 0);
+  initialize_matrix(B_org, 1, 0);
 
-  A[12]=0;
-  A[15]=3;
-  B_org[7]=0;
-  B_org[11]=3;
 
   //change the rows and columns of matrix for ease of access
   for(int i=0; i<N; i++)
     for(int j=0; j<N; j++)
       B[i*N+j] = B_org[j*N+i];
 
+  mm(A, B, C);
 
+  /*
+  */
   print_matrix(A);
   printf("\n\n");
   print_matrix(B_org);
   printf("\n\n");
-  mm(A, B, C);
-
   print_matrix(C);
   printf("\n\n");
-
+  /*
+  */
 
   return 0;
 }

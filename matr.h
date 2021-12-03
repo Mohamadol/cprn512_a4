@@ -30,7 +30,7 @@ void initialize_matrix(int *data, int random_init, int init_val){
   for(int i=0 ; i<N ; i++){
     for(int j=0 ; j<N ; j++){
       if(random_init)
-        data[i * N + j] = (float)rand() / (float)(RAND_MAX/max_random_init) + 1;
+        data[i * N + j] = (int)(rand() / (RAND_MAX/max_random_init) + 1);
       else
         data[i * N + j] = init_val;
     }
