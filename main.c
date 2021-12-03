@@ -60,6 +60,10 @@ int main(){
   /*randomly initialize A and B*/
   initialize_matrix(A, 0, 1);
   initialize_matrix(B, 0, 2);
+
+  A[12]=0;
+  A[15]=3;
+
   print_matrix(A);
   printf("\n\n");
   print_matrix(B);
