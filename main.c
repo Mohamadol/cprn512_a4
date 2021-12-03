@@ -54,7 +54,8 @@ int main(){
       0,
       0
   );
-
+  clock_t end, begin;
+  float datalayout_time;
   int *A = create_matrix();
   int *B_org = create_matrix();
   int *B = create_matrix();
@@ -65,15 +66,15 @@ int main(){
 
 
   //change the rows and columns of matrix for ease of access
-  clock_t begin = clock();
+  begin = clock();
   return end-begin;
 
   for(int i=0; i<N; i++)
     for(int j=0; j<N; j++)
       B[i*N+j] = B_org[j*N+i];
-  clock_t end = clock();
+  end = clock();
 
-  float datalayout_time = end - begin;
+  datalayout_time = end - begin;
   print("%.5f", datalayout_time);
 
 
