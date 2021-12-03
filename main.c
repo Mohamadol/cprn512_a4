@@ -18,24 +18,21 @@ void mm(int *A, int *B, int *C)
     /*transfering data from matrix arrays to vector scratchpads*/
     /*scratchpad ptr, host ptr, numBytes*/
 
-
-
-    /*setting vector length register*/
-    //for(int i=0 ; i < num_rows; i++){
-      /*num lanes=N, num_rows=N*/
-      vbx_dma_to_vector(a, A, N*N*sizeof(vbx_word_t));
-      vbx_dma_to_vector(b, B, N*N*sizeof(vbx_word_t));
-      vbx_sync();
-      for(int i=0; i< 2; i++){
-      vbx_set_vl(row_size);
-      /*stride -> num_rows, incDest, incSrcA*/
-      //vbx_set_2D(1, 0, N);
-      /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
-      vbx_acc(VVWWWUUU, VMUL, (c+i), (a+i*N), (b+i*N));
-      vbx_sync();
+    vbx_dma_to_vector(a, A, N*N*sizeof(vbx_word_t));
+    vbx_dma_to_vector(b, B, N*N*sizeof(vbx_word_t));
+    vbx_sync();
+    for(int i=0; i<N ; i++){
+      for(int j=0; j< N; j++){
+        vbx_set_vl(row_size);
+        /*stride -> num_rows, incDest, incSrcA*/
+        //vbx_set_2D(1, 0, N);
+        /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
+        vbx_acc(VVWWWUUU, VMUL, (c+i*N+j), (a+i*N), (b+i*N));
+        vbx_sync();
       }
-      vbx_dma_to_host(C, c, N*N*sizeof(vbx_word_t));
-      vbx_sync();
+    }
+    vbx_dma_to_host(C, c, N*N*sizeof(vbx_word_t));
+    vbx_sync();
     //}
     //vbxsim_print_stats();
     //vbx_sp_free();
