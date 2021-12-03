@@ -67,7 +67,6 @@ int main(){
 
   //change the rows and columns of matrix for ease of access
   begin = clock();
-
   for(int i=0; i<N; i++)
     for(int j=0; j<N; j++)
       B[i*N+j] = B_org[j*N+i];
