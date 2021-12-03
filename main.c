@@ -64,8 +64,8 @@ int main(){
 
   A[12]=0;
   A[15]=3;
-  B[7]=0;
-  B[11]=3;
+  B_org[7]=0;
+  B_org[11]=3;
 
   for(int i=0; i<N; i++)
     for(int j=0; j<N; j++)
