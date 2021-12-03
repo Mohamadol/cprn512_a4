@@ -24,8 +24,8 @@ void mm(int *A, int *B, int *C)
     //for(int i=0 ; i < num_rows; i++){
       /*num lanes=N, num_rows=N*/
       for(int i=0; i< 2; i++){
-      vbx_dma_to_vector(a, A[i*N], N*sizeof(vbx_word_t));
-      vbx_dma_to_vector(b, B[i*N], N*sizeof(vbx_word_t));
+      vbx_dma_to_vector(a, A, N*sizeof(vbx_word_t));
+      vbx_dma_to_vector(b, B, N*sizeof(vbx_word_t));
       vbx_sync();
       vbx_set_vl(row_size);
       /*stride -> num_rows, incDest, incSrcA*/
