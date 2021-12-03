@@ -14,7 +14,7 @@ void mm(float *A, float *B, float *C)
     /*operands and the result*/
 	  vbx_word_t *a = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
 	  vbx_word_t *b = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
-	  vbx_word_t *c = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
+	  vbx_word_t *c = vbx_sp_malloc(num_rows * sizeof(vbx_word_t));
     /*transfering data from matrix arrays to vector scratchpads*/
     /*scratchpad ptr, host ptr, numBytes*/
 
@@ -29,14 +29,13 @@ void mm(float *A, float *B, float *C)
       /*stride -> num_rows, incDest, incSrcA*/
       vbx_set_2D(6, N*6, N*6);
       /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
-      vbx_acc(VVWWWUUU, VMUL, c[i*N], a, b);
+      vbx_acc(VVWWWUUU, VMUL, c, a, b);
+      vbx_sync();
+      vbx_dma_to_host(C[i*N], c, N * sizeof(vbx_word_t));
       vbx_sync();
     }
-
-    vbx_dma_to_host(C, c, N * N * sizeof(vbx_word_t));
-    vbx_sync();
     //vbxsim_print_stats();
-    vbx_sp_free();
+    //vbx_sp_free();
 	  return;
 }
 
