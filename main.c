@@ -26,7 +26,7 @@ void mm(int *A, int *B, int *C)
       vbx_dma_to_vector(a, A, N*N*sizeof(vbx_word_t));
       vbx_dma_to_vector(b, B, N*N*sizeof(vbx_word_t));
       vbx_sync();
-      for(int i=0; i< 2; i++){
+      for(int i=0; i< 1; i++){
       vbx_set_vl(row_size);
       /*stride -> num_rows, incDest, incSrcA*/
       //vbx_set_2D(1, 0, N);
