@@ -23,7 +23,7 @@ void mm(float *A, float *B, float *C)
     vbx_sync();
 
     /*setting vector length register*/
-    for(int i=0 ; i < num_rows; i++){
+    //for(int i=0 ; i < num_rows; i++){
       /*num lanes=N, num_rows=N*/
       vbx_set_vl(row_size, num_rows);
       /*stride -> num_rows, incDest, incSrcA*/
@@ -31,9 +31,9 @@ void mm(float *A, float *B, float *C)
       /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
       vbx_acc(VVWWWUUU, VMUL, c, a, b);
       vbx_sync();
-      vbx_dma_to_host(C[i*N], c, N * sizeof(vbx_word_t));
+      vbx_dma_to_host(C, c, N * sizeof(vbx_word_t));
       vbx_sync();
-    }
+    //}
     //vbxsim_print_stats();
     //vbx_sp_free();
 	  return;
