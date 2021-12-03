@@ -33,7 +33,7 @@ void mm(float *A, float *B, float *C)
     }
     vbx_dma_to_host(C, c, N * N * sizeof(vbx_word_t));
     vbx_sync();
-    vbxsim_print_stats();
+    //vbxsim_print_stats();
     vbx_sp_free();
 	  return;
 }
