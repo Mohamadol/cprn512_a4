@@ -33,8 +33,8 @@ void mm(int *A, int *B, int *C)
       /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
       vbx_acc(VVWWWUUU, VMUL, c, a, b);
       vbx_sync();
-      vbx_dma_to_host(C[i], c, sizeof(vbx_word_t));
-      vbx_sync();
+      //vbx_dma_to_host(C[i], c, sizeof(vbx_word_t));
+      //vbx_sync();
       }
     //}
     //vbxsim_print_stats();
