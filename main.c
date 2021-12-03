@@ -12,9 +12,9 @@ void mm(int *A, int *B, int *C)
     int num_rows = N;
     /*create vector scratchpads with the size of matrix for both*/
     /*operands and the result*/
-	  vbx_word_t *a = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
-	  vbx_word_t *b = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
-	  vbx_word_t *c = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
+	  vbx_word_t *a = vbx_sp_malloc(N*N * sizeof(vbx_word_t));
+	  vbx_word_t *b = vbx_sp_malloc(N*N * sizeof(vbx_word_t));
+	  vbx_word_t *c = vbx_sp_malloc(N*N * sizeof(vbx_word_t));
     /*transfering data from matrix arrays to vector scratchpads*/
     /*scratchpad ptr, host ptr, numBytes*/
 
@@ -34,8 +34,8 @@ void mm(int *A, int *B, int *C)
         vbx_sync();
       }
     }
-    vbx_dma_to_host(C, c, N * N * sizeof(vbx_word_t));
-    vbx_sync();
+    //vbx_dma_to_host(C, c, N * N * sizeof(vbx_word_t));
+    //vbx_sync();
     //}
     //vbxsim_print_stats();
     //vbx_sp_free();
