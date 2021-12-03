@@ -14,7 +14,7 @@ void mm(int *A, int *B, int *C)
     /*operands and the result*/
 	  vbx_word_t *a = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
 	  vbx_word_t *b = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
-	  vbx_word_t *c = vbx_sp_malloc(num_rows * sizeof(vbx_word_t));
+	  vbx_word_t *c = vbx_sp_malloc(mat_size * sizeof(vbx_word_t));
     /*transfering data from matrix arrays to vector scratchpads*/
     /*scratchpad ptr, host ptr, numBytes*/
 
