@@ -71,12 +71,9 @@ int main(){
     for(int j=0; j<N; j++)
       B[i*N+j] = B_org[j*N+i];
   end = clock();
-
   datalayout_time = end - begin;
-  printf("%.5f", datalayout_time);
-
-
   mm(A, B, C);
+  printf("memory layout fixing time %.6f\n", datalayout_time / 1000000.0);
 
   /*
   //comment out below for result check with
