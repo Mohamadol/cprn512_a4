@@ -18,12 +18,12 @@
 
 
 int *create_matrix(){
-  int *matrix = (int *)malloc(sizeof(int) * N * N);
+  int *matrix = (float *)malloc(sizeof(float) * N * N);
   return matrix;
 }
 
 
-void initialize_matrix(int *data, int random_init, int init_val){
+void initialize_matrix(float *data, int random_init, float init_val){
   float max_random_init = 1000.0;
   int max_random_init_int = 1000;
 
@@ -47,17 +47,17 @@ void initialize_matrix_from_another_matrix(float *dest, float *source){
 }
 
 
-void print_matrix(int *data){
+void print_matrix(float *data){
   for (int i=0 ; i<N ; i++){
     for(int j=0 ; j<N ; j++)
-      printf("%d  ", (data)[i*N+j]);
+      printf("%.2f  ", (data)[i*N+j]);
     printf("\n");
   }
 }
 
 
 
-void free_matrix(int *data){
+void free_matrix(float *data){
   free(data);
 }
 

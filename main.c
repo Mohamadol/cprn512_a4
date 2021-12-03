@@ -5,7 +5,7 @@
 
 
 
-void mm(int *A, int *B, int *C)
+void mm(float *A, float *B, float *C)
 {
     int mat_size = N * N;
     int row_size = N;
@@ -54,10 +54,10 @@ int main(){
       0
   );
 
-  int *A = create_matrix();
-  int *B_org = create_matrix();
-  int *B = create_matrix();
-  int *C = create_matrix();
+  float *A = create_matrix();
+  float *B_org = create_matrix();
+  float *B = create_matrix();
+  float *C = create_matrix();
   /*randomly initialize A and B*/
   initialize_matrix(A, 0, 1);
   initialize_matrix(B_org, 0, 2);
