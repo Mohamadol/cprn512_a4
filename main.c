@@ -34,7 +34,7 @@ void mm(int *A, int *B, int *C)
     vbx_dma_to_host(C, c, N*N*sizeof(vbx_word_t));
     vbx_sync();
     //}
-    //vbxsim_print_stats();
+    vbxsim_print_stats_extended();
     //vbx_sp_free();
 	  return;
 }
@@ -67,6 +67,7 @@ int main(){
   B_org[7]=0;
   B_org[11]=3;
 
+  //change the rows and columns of matrix for ease of access
   for(int i=0; i<N; i++)
     for(int j=0; j<N; j++)
       B[i*N+j] = B_org[j*N+i];
