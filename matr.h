@@ -56,6 +56,7 @@ void print_matrix(float *data){
 }
 
 
+
 void free_matrix(float *data){
   free(data);
 }
