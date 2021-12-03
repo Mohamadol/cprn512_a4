@@ -23,15 +23,15 @@ void mm(int *A, int *B, int *C)
     /*setting vector length register*/
     //for(int i=0 ; i < num_rows; i++){
       /*num lanes=N, num_rows=N*/
-      for(int i=0; i< 2; i++){
-      vbx_dma_to_vector(a, A, N*sizeof(vbx_word_t));
-      vbx_dma_to_vector(b, B, N*sizeof(vbx_word_t));
+      vbx_dma_to_vector(a, A, N*N*sizeof(vbx_word_t));
+      vbx_dma_to_vector(b, B, N*N*sizeof(vbx_word_t));
       vbx_sync();
+      for(int i=0; i< 2; i++){
       vbx_set_vl(row_size);
       /*stride -> num_rows, incDest, incSrcA*/
       //vbx_set_2D(1, 0, N);
       /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
-      vbx_acc(VVWWWUUU, VMUL, c, a, b);
+      vbx_acc(VVWWWUUU, VMUL, c, a[i*N], b[i*N]);
       vbx_sync();
       vbx_dma_to_host(C, c, sizeof(vbx_word_t));
       vbx_sync();
