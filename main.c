@@ -4,14 +4,6 @@
 #include "matr.h"
 
 
-vbxsim_init(
-    4,      /* numb_lanes*/
-    64,     /*scratchpad capacity*/
-    256,    /*max_masked_waves*/
-    6,      /*fxp_word_frac_bits*/
-    4,      /*fxp_byte_frac_bits*/
-);
-
 
 void mm(float *A, float *B, float *C)
 {
@@ -43,6 +35,14 @@ void mm(float *A, float *B, float *C)
 
 
 int main(){
+
+  vbxsim_init(
+      4,      /* numb_lanes*/
+      64,     /*scratchpad capacity*/
+      256,    /*max_masked_waves*/
+      6,      /*fxp_word_frac_bits*/
+      4,      /*fxp_byte_frac_bits*/
+  );
 
   float *A = create_matrix();
   float *B = create_matrix();
