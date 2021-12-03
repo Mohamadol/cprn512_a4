@@ -5,7 +5,7 @@
 
 
 
-void mm(float *A, float *B, float *C)
+void mm(int *A, int *B, int *C)
 {
     int mat_size = N * N;
     int row_size = N;
@@ -25,13 +25,13 @@ void mm(float *A, float *B, float *C)
     /*setting vector length register*/
     //for(int i=0 ; i < num_rows; i++){
       /*num lanes=N, num_rows=N*/
-      vbx_set_vl(row_size, num_rows);
+      vbx_set_vl(row_size);
       /*stride -> num_rows, incDest, incSrcA*/
-      vbx_set_2D(1, 0, N);
+      //vbx_set_2D(1, 0, N);
       /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
       vbx_acc(VVWWWUUU, VMUL, c, a, b);
       vbx_sync();
-      vbx_dma_to_host(C, c, N * sizeof(vbx_word_t));
+      vbx_dma_to_host(C, c, sizeof(vbx_word_t));
       vbx_sync();
     //}
     //vbxsim_print_stats();
@@ -54,12 +54,12 @@ int main(){
       0
   );
 
-  float *A = create_matrix();
-  float *B = create_matrix();
-  float *C = create_matrix();
+  int *A = create_matrix();
+  int *B = create_matrix();
+  int *C = create_matrix();
   /*randomly initialize A and B*/
-  initialize_matrix(A, 1, 0);
-  initialize_matrix(B, 1, 0);
+  initialize_matrix(A, 0, 1);
+  initialize_matrix(B, 0, 2);
   print_matrix(A);
   printf("\n\n");
   print_matrix(B);
