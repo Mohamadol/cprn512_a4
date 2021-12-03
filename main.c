@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "vbx.h"
+#include "matr.h"
 
 
 vbxsim_init(
