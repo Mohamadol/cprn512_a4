@@ -24,13 +24,13 @@ void mm(int *A, int *B, int *C)
 
     /*setting vector length register*/
     for(int i=0 ; i < N; i++){
-      for(int j=0 ; j < N ; j++){
+      //for(int j=0 ; j < N ; j++){
         /*num lanes=N, num_rows=N*/
         vbx_set_vl(row_size);
         /*stride -> num_rows, incDest, incSrcA*/
         //vbx_set_2D(1, 0, N);
         /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
-        vbx_acc(VVWWWUUU, VMUL, c, a[i*N], b[i*N]);
+        vbx_acc(VVWWWUUU, VMUL, c[i], a[i*N], b[i*N]);
         vbx_sync();
       }
     }
