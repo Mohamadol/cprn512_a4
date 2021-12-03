@@ -22,14 +22,14 @@ void mm(int *A, int *B, int *C)
     vbx_dma_to_vector(b, B, N*N*sizeof(vbx_word_t));
     vbx_sync();
     for(int i=0; i<N ; i++){
-      for(int j=0; j< N; j++){
-        vbx_set_vl(row_size);
+      //for(int j=0; j< N; j++){
+        vbx_set_vl(row_size, num_rows);
         /*stride -> num_rows, incDest, incSrcA*/
-        //vbx_set_2D(1, 0, N);
+        vbx_set_2D(1*4, 0, N*4);
         /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
-        vbx_acc(VVWWWUUU, VMUL, (c+i*N+j), (a+i*N), (b+i*N));
+        vbx_acc(VVWWWUUU, VMUL, (c+i*N), (a+i*N), b);
         vbx_sync();
-      }
+      //}
     }
     vbx_dma_to_host(C, c, N*N*sizeof(vbx_word_t));
     vbx_sync();
