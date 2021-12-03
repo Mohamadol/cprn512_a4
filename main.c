@@ -23,7 +23,7 @@ void mm(float *A, float *B, float *C)
     /*stride -> num_rows, incDest, incSrcA*/
     vbx_set_2D(N, N, N);
     /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
-    vbx_acc(VVWWWUUU, VMUL, c, a, b);
+    vbx_mult(VVWWWUUU, VMUL, c, a, b);
   	vbx_sync();
     vbx_dma_to_host(C, c, N * N * sizeof(vbx_word_t));
     vbx_sync();
