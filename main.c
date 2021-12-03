@@ -30,7 +30,9 @@ void mm(float *A, float *B, float *C)
       vbx_set_2D(6, N*6, N*6);
       /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
       vbx_acc(VVWWWUUU, VMUL, c[i*N], a, b);
+      vbx_sync();
     }
+
     vbx_dma_to_host(C, c, N * N * sizeof(vbx_word_t));
     vbx_sync();
     //vbxsim_print_stats();
