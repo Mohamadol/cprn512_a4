@@ -27,7 +27,7 @@ void mm(float *A, float *B, float *C)
       /*num lanes=N, num_rows=N*/
       vbx_set_vl(row_size, num_rows);
       /*stride -> num_rows, incDest, incSrcA*/
-      vbx_set_2D(1, N, N);
+      vbx_set_2D(1, 0, N);
       /*vector-vector, words size, unsigned, dest->c, sources->a, b*/
       vbx_acc(VVWWWUUU, VMUL, c, a, b);
       vbx_sync();
