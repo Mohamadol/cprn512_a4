@@ -8,7 +8,7 @@
 
 
 #if !defined(N)
-#define N 1024
+#define N 4096
 #endif
 
 #if !defined(PARALLEL)

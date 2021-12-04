@@ -8,7 +8,7 @@
 N=4096
 
 echo "Experiment"
-make main.elf && ./main.elf > results/N$N.txt
+make main_4096.elf && ./main_4096.elf > results/N$N.txt
 
 
 #done
