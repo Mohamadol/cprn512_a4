@@ -6,7 +6,6 @@
 #do
 N=8
 
-mkdir results/N$N
 echo "Experiment"
 make main.elf && ./main.elf > results/N$N.txt
 
